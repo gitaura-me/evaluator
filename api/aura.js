@@ -8,6 +8,7 @@ export default async function handler(req, res) {
 
       const { db } = await connectToDatabase();
       const user = await db.collection("users").findOne({ _id: user_id });
+      console.log(user);
 
       if (!user) {
         return res.status(404).json({ message: "User not found" });
