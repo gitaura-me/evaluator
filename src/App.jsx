@@ -45,6 +45,7 @@ export default function App() {
       body: JSON.stringify(body),
     });
 
+    e.target.reset();
     getNextUser();
   }
 
