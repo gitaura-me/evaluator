@@ -7,16 +7,16 @@ export default function App() {
     (async () => {
       const response = await fetch("/api/users");
       const users = await response.json();
-      const filteredUsers = users.filter((user) => !user.feedback_given);
+      const noAura = users.filter((user) => !user?.aura);
 
-      if (filteredUsers.length === 0) {
+      if (noAura.length === 0) {
         alert("No more users to review!");
         return;
       }
 
-      const randomUser =
-        filteredUsers[Math.floor(Math.random() * filteredUsers.length)];
-      setUser(randomUser);
+      const random =
+        noAura[Math.floor(Math.random() * filteredUsers.length)];
+      setUser(random);
     })();
   }
 
@@ -45,18 +45,18 @@ export default function App() {
           <p>🔄 Contributions: {user?.contributions}</p>
         </div>
       </div>
-      <form method="POST" action="/api/feedback">
+      <form method="POST" action="/api/aura">
         <input type="hidden" name="user_id" value={user?._id} />
         <input
           type="number"
-          name="feedback"
+          name="aura"
           className="input input-bordered mt-2"
-          min="-1"
-          max="1"
+          min="-69696969"
+          max="69696969"
           required
         />
         <button type="submit" className="btn btn-outline btn-primary mt-2">
-          Submit Feedback
+          git aura'd
         </button>
       </form>
       <button onClick={getNextUser}>Next</button>
