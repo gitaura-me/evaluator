@@ -24,6 +24,27 @@ export default function App() {
     getNextUser();
   }, []);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const body = Object.fromEntries(formData);
+
+    const response = await fetch("/api/aura", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (response.ok) {
+      alert("User aura'd!");
+    }
+
+    getNextUser();
+  }
+
   return (
     <main className="w-1/2 mx-auto">
       <div className="card bg-base-100 shadow-lg">
@@ -45,7 +66,7 @@ export default function App() {
           <p>🔄 Contributions: {user?.contributions}</p>
         </div>
       </div>
-      <form method="POST" action="/api/aura">
+      <form onSubmit={handleSubmit}>
         <input type="hidden" name="user_id" value={user?._id} />
         <input
           type="number"
