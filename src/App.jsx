@@ -16,14 +16,16 @@ export default function App() {
 
       const randomUser =
         filteredUsers[Math.floor(Math.random() * filteredUsers.length)];
-      console.log(randomUser);
       setUser(randomUser);
     })();
   }
 
+  useEffect(() => {
+    getNextUser();
+  }, []);
+
   return (
     <main className="w-1/2 mx-auto">
-      <button onClick={getNextUser}>Next</button>
       <div className="card bg-base-100 shadow-lg">
         <div className="card-body">
           <h2 className="card-title">{user?.login}</h2>
@@ -43,6 +45,7 @@ export default function App() {
           <p>🔄 Contributions: {user?.contributions}</p>
         </div>
       </div>
+      <button onClick={getNextUser}>Next</button>
     </main>
   );
 }
