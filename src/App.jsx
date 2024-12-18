@@ -3,6 +3,7 @@ import Papa from "papaparse";
 
 export default function App() {
   const [users, setUsers] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -24,11 +25,15 @@ export default function App() {
       const response = await fetch("/api/users");
       const data = await response.json();
 
-      const newUser = users.filter(
-        (user) => !data.some((newUser) => newUser.login === user.login)
+      setUsers(
+        users.filter(
+          (user) => !data.some((newUser) => newUser.login === user.login)
+        )
       );
 
-      console.log(newUser);
+      let randomUser = users[Math.floor(Math.random() * users.length)];
+      console.log(randomUser);
+      setUser(randomUser);
     })();
   }
 
