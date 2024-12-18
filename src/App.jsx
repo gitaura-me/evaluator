@@ -26,21 +26,21 @@ export default function App() {
       <button onClick={getNextUser}>Next</button>
       <div className="card bg-base-100 shadow-lg">
         <div className="card-body">
-          <h2 className="card-title">{user.login}</h2>
+          <h2 className="card-title">{user?.login}</h2>
           <p>
             <a
-              href={user.link}
+              href={user?.link}
               className="text-blue-500 hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {user.link}
+              {user?.link}
             </a>
           </p>
-          <p>⭐ Stars: {user.stars}</p>
-          <p>📂 Public Repos: {user.public_repos}</p>
-          <p>👥 Followers: {user.followers}</p>
-          <p>🔄 Contributions: {user.contributions}</p>
+          <p>⭐ Stars: {user?.stars}</p>
+          <p>📂 Public Repos: {user?.public_repos}</p>
+          <p>👥 Followers: {user?.followers}</p>
+          <p>🔄 Contributions: {user?.contributions}</p>
         </div>
       </div>
     </main>
