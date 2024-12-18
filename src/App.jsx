@@ -15,7 +15,7 @@ export default function App() {
       }
 
       const random =
-        noAura[Math.floor(Math.random() * filteredUsers.length)];
+        noAura[Math.floor(Math.random() * noAura.length)];
       setUser(random);
     })();
   }
