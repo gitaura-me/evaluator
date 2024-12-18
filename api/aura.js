@@ -23,7 +23,7 @@ export default async function handler(req, res) {
           { $set: { aura: aura } }
         );
 
-        res.redirect("/");
+      res.status(200).json({ message: "Feedback submitted" });
     } catch (error) {
       res.status(500).json({ message: "Error submitting feedback", error });
     }
