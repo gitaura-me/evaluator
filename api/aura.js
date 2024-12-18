@@ -18,10 +18,7 @@ export default async function handler(req, res) {
 
       await db
         .collection("users")
-        .updateOne(
-          { _id: user_id },
-          { $set: { aura: aura } }
-        );
+        .updateOne({ _id: new ObjectId(user_id) }, { $set: { aura: aura } });
 
       res.status(200).json({ message: "Feedback submitted" });
     } catch (error) {
