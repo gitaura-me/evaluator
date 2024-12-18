@@ -45,6 +45,20 @@ export default function App() {
           <p>🔄 Contributions: {user?.contributions}</p>
         </div>
       </div>
+      <form method="POST" action="/api/feedback">
+        <input type="hidden" name="user_id" value={user?._id} />
+        <input
+          type="number"
+          name="feedback"
+          className="input input-bordered mt-2"
+          min="-1"
+          max="1"
+          required
+        />
+        <button type="submit" className="btn btn-outline btn-primary mt-2">
+          Submit Feedback
+        </button>
+      </form>
       <button onClick={getNextUser}>Next</button>
     </main>
   );

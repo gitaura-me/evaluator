@@ -3,14 +3,14 @@ import { connectToDatabase } from "./db.js";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { user_id, feedback } = req.body;
+      const { user_id, aura } = req.body;
 
       const { db } = await connectToDatabase();
       await db
         .collection("users")
         .updateOne(
           { _id: user_id },
-          { $set: { user_feedback: feedback, feedback_given: true } }
+          { $set: { aura: aura, feedback_given: true } }
         );
 
       res.status(200).json({ message: "Feedback submitted successfully!" });
