@@ -1,35 +1,21 @@
 import { useEffect, useState } from "react";
-import Papa from "papaparse";
 
 export default function App() {
-  const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const response = await fetch("/data/users.csv");
-      const text = await response.text();
-      Papa.parse(text, {
-        header: true,
-        skipEmptyLines: true,
-        complete: (result) => {
-          setUsers(result.data);
-        },
-      });
-    })();
-  }, []);
 
   function getNextUser() {
     (async () => {
       const response = await fetch("/api/users");
-      const data = await response.json();
+      const users = await response.json();
+      const filteredUsers = users.filter((user) => !user.feedback_given);
 
-      let filtered = users.filter(
-        (user) => !data.some((newUser) => newUser.login === user.login)
-      );
+      if (filteredUsers.length === 0) {
+        alert("No more users to review!");
+        return;
+      }
 
-      let randomUser = filtered[2];
-      console.log(randomUser);
+      const randomUser =
+        filteredUsers[Math.floor(Math.random() * filteredUsers.length)];
       setUser(randomUser);
     })();
   }
