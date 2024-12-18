@@ -13,7 +13,6 @@ export default function App() {
         header: true,
         skipEmptyLines: true,
         complete: (result) => {
-          console.log(result.data);
           setUsers(result.data);
         },
       });
@@ -25,13 +24,11 @@ export default function App() {
       const response = await fetch("/api/users");
       const data = await response.json();
 
-      setUsers(
-        users.filter(
-          (user) => !data.some((newUser) => newUser.login === user.login)
-        )
+      let filtered = users.filter(
+        (user) => !data.some((newUser) => newUser.login === user.login)
       );
 
-      let randomUser = users[Math.floor(Math.random() * users.length)];
+      let randomUser = filtered[2];
       console.log(randomUser);
       setUser(randomUser);
     })();
@@ -39,7 +36,7 @@ export default function App() {
 
   return (
     <main className="w-1/2 mx-auto">
-      <button>Next</button>
+      <button onClick={getNextUser}>Next</button>
       <div className="card bg-base-100 shadow-lg">
         <div className="card-body">
           <h2 className="card-title">{users[0]?.login}</h2>
