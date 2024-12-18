@@ -4,9 +4,9 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       const { user_id, aura } = req.body;
+      console.log(user_id, aura);
 
       const { db } = await connectToDatabase();
-
       const user = await db.collection("users").findOne({ _id: user_id });
 
       if (!user) {
