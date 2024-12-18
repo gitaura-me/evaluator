@@ -7,7 +7,7 @@ export default function App() {
     (async () => {
       const response = await fetch("/api/users");
       const users = await response.json();
-      const noAura = users.filter((user) => !user?.aura);
+      const noAura = users.filter((user) => user?.aura === undefined || user?.aura === null);
 
       if (noAura.length === 0) {
         alert("No more users to review!");
