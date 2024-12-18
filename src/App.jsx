@@ -7,7 +7,17 @@ export default function App() {
     (async () => {
       const response = await fetch("/api/users");
       const users = await response.json();
-      console.log(users);
+      const filteredUsers = users.filter((user) => !user.feedback_given);
+
+      if (filteredUsers.length === 0) {
+        alert("No more users to review!");
+        return;
+      }
+
+      const randomUser =
+        filteredUsers[Math.floor(Math.random() * filteredUsers.length)];
+      console.log(randomUser);
+      setUser(randomUser);
     })();
   }
 
@@ -16,21 +26,21 @@ export default function App() {
       <button onClick={getNextUser}>Next</button>
       <div className="card bg-base-100 shadow-lg">
         <div className="card-body">
-          <h2 className="card-title">{users[0]?.login}</h2>
+          <h2 className="card-title">{user.login}</h2>
           <p>
             <a
-              href={users[0]?.link}
+              href={user.link}
               className="text-blue-500 hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {users[0]?.link}
+              {user.link}
             </a>
           </p>
-          <p>⭐ Stars: {users[0]?.stars}</p>
-          <p>📂 Public Repos: {users[0]?.public_repos}</p>
-          <p>👥 Followers: {users[0]?.followers}</p>
-          <p>🔄 Contributions: {users[0]?.contributions}</p>
+          <p>⭐ Stars: {user.stars}</p>
+          <p>📂 Public Repos: {user.public_repos}</p>
+          <p>👥 Followers: {user.followers}</p>
+          <p>🔄 Contributions: {user.contributions}</p>
         </div>
       </div>
     </main>
