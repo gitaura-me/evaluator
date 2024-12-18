@@ -6,6 +6,13 @@ export default async function handler(req, res) {
       const { user_id, aura } = req.body;
 
       const { db } = await connectToDatabase();
+
+      const user = await db.collection("users").findOne({ _id: user_id });
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
       await db
         .collection("users")
         .updateOne(
@@ -13,7 +20,7 @@ export default async function handler(req, res) {
           { $set: { aura: aura } }
         );
 
-      res.status(200).json({ message: "Feedback submitted successfully!" });
+        res.redirect("/");
     } catch (error) {
       res.status(500).json({ message: "Error submitting feedback", error });
     }
