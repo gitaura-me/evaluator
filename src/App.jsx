@@ -50,9 +50,9 @@ export default function App() {
   }
 
   return (
-    <main className="w-1/2 mx-auto pt-40">
-      <div className="card shadow-lg bg-base-200">
-        <figure className="h-50">
+    <main className="w-screen h-screen md:h-fit md:w-1/2 mx-auto md:pt-40">
+      <div className="h-screen md:h-fit md:card shadow-lg bg-base-200">
+        <figure className="md:h-50">
           <input
             type="checkbox"
             className="toggle toggle-primary absolute top-2 right-2"
