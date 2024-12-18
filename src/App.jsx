@@ -45,10 +45,6 @@ export default function App() {
       body: JSON.stringify(body),
     });
 
-    if (response.ok) {
-      alert("User aura'd!");
-    }
-
     getNextUser();
   }
 
