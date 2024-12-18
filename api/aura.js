@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 import { connectToDatabase } from "./db.js";
 
 export default async function handler(req, res) {
@@ -7,7 +9,7 @@ export default async function handler(req, res) {
       console.log(user_id, aura);
 
       const { db } = await connectToDatabase();
-      const user = await db.collection("users").findOne({ _id: user_id });
+      const user = await db.collection("users").findOne({ _id: new ObjectId(user_id) });
       console.log(user);
 
       if (!user) {
