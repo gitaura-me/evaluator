@@ -7,17 +7,7 @@ export default function App() {
     (async () => {
       const response = await fetch("/api/users");
       const users = await response.json();
-      const filteredUsers = users.filter((user) => !user.feedback_given);
-
-      if (filteredUsers.length === 0) {
-        alert("No more users to review!");
-        return;
-      }
-
-      const randomUser =
-        filteredUsers[Math.floor(Math.random() * filteredUsers.length)];
-      console.log(randomUser);
-      setUser(randomUser);
+      console.log(users);
     })();
   }
 
