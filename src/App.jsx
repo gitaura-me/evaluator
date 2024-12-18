@@ -16,7 +16,7 @@ export default function App() {
 
       const randomUser =
         filteredUsers[Math.floor(Math.random() * filteredUsers.length)];
-      console.log(users, randomUser);
+      console.log(randomUser);
       setUser(randomUser);
     })();
   }
